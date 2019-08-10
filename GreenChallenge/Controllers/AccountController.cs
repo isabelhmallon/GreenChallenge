@@ -16,6 +16,7 @@ using Microsoft.Owin.Security.OAuth;
 using GreenChallenge.Models;
 using GreenChallenge.Providers;
 using GreenChallenge.Results;
+using System.Web.Http.Cors;
 
 namespace GreenChallenge.Controllers
 {
