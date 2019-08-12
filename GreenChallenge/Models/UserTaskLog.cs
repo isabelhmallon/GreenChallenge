@@ -5,11 +5,11 @@ using System.Web;
 
 namespace GreenChallenge.Models
 {
-    public class Challenge
+    public class UserTaskLog
     {
         public int id { get; set; }
-        public string name { get; set; }
-        public string description { get; set; }
+        public DateTime dateCompleted { get; set; }
+        public Boolean complete { get; set; }
         public IEnumerable<ChallengeTask> tasks { get; set; }
     }
 }
