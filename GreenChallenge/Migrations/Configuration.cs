@@ -20,10 +20,10 @@ namespace GreenChallenge.Migrations
             //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
             //  to avoid creating duplicate seed data.
 
-            context.Challenges.AddOrUpdate(p => p.id,
-            new Challenge { name = "test", description = "test" }
+            //context.Challenges.AddOrUpdate(p => p.id,
+            //new Challenge { name = "test", description = "test" }
             
-            );
+            //);
 
 
         }
