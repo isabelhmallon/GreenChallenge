@@ -24,5 +24,9 @@ namespace GreenChallenge.Models
         public System.Data.Entity.DbSet<GreenChallenge.Models.Challenge> Challenges { get; set; }
 
         public System.Data.Entity.DbSet<GreenChallenge.Models.UserChallenge> UserChallenges { get; set; }
+
+        public System.Data.Entity.DbSet<GreenChallenge.Models.UserTaskLog> UserTaskLogs { get; set; }
+
+        public System.Data.Entity.DbSet<GreenChallenge.Models.Day> Days { get; set; }
     }
 }

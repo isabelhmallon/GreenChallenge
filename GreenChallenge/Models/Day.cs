@@ -8,10 +8,8 @@ namespace GreenChallenge.Models
 {
     public class Day
     {
-        [Key]
-        public int dayNumber { get; set; }
-
-        [Key]
+        public int id { get; set; }
+        public int dayNumber { get; set; }        
         public int userId { get; set; }
         public IEnumerable<UserTaskLog> tasksCompleted { get; set; }
         public Boolean dayCompleted { get; set; }
