@@ -7,9 +7,10 @@ namespace GreenChallenge.Models
 {
     public class UserTaskLog
     {
-        public int id { get; set; }
+        public int userId { get; set; }
         public DateTime dateCompleted { get; set; }
         public Boolean complete { get; set; }
+        public int dayNumber {get; set;}
         public IEnumerable<ChallengeTask> tasks { get; set; }
     }
 }
