@@ -44,7 +44,7 @@ namespace GreenChallenge.Controllers
                 return BadRequest(ModelState);
             }
 
-            if (id != userChallenge.Id)
+            if (id != userChallenge.id)
             {
                 return BadRequest();
             }
@@ -82,7 +82,7 @@ namespace GreenChallenge.Controllers
             db.UserChallenges.Add(userChallenge);
             db.SaveChanges();
 
-            return CreatedAtRoute("DefaultApi", new { id = userChallenge.Id }, userChallenge);
+            return CreatedAtRoute("DefaultApi", new { id = userChallenge.id }, userChallenge);
         }
 
         // DELETE: api/UserChallenges/5
@@ -112,7 +112,7 @@ namespace GreenChallenge.Controllers
 
         private bool UserChallengeExists(int id)
         {
-            return db.UserChallenges.Count(e => e.Id == id) > 0;
+            return db.UserChallenges.Count(e => e.id == id) > 0;
         }
     }
 }

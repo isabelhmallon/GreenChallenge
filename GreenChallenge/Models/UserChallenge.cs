@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -8,13 +8,15 @@ namespace GreenChallenge.Models
 {
     public class UserChallenge
     {
-        public int Id { get; set; }
+        public int id { get; set; }
+        public int username { get; set; }
+        public ICollection<Day> days { get; set; }
+        public Boolean challengeCompleted { get; set; }
 
-        [Required]
-        public int userID { get; set; }
-        public IEnumerable<Day> day { get; set; }
+        public int challengeId { get; set; }
+        [ForeignKey("challengeId")]
+        public Challenge challenge { get; set; }
 
-        [Required]
-        public IEnumerable<Challenge> challenge { get; set; }
+
     }
 }
