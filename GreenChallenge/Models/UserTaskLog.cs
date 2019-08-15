@@ -13,14 +13,13 @@ namespace GreenChallenge.Models
         public DateTime dateCompleted { get; set; }
         public Boolean complete { get; set; }
 
-
         public int dayNumber {get; set;}
-        [ForeignKey("dayNumber")]
+        
         public Day day { get; set; }
 
-        public int taskRefId { get; set; }
-        [ForeignKey("taskRefId")]
+   
+        public int challengeTaskId { get; set; }
+        
         public ChallengeTask ChallengeTask { get; set; }
-        public ICollection<ChallengeTask> tasks { get; set; }
     }
 }
