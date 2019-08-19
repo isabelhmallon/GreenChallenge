@@ -9,7 +9,9 @@ namespace GreenChallenge.Models
     public class UserChallenge
     {
         public int id { get; set; }
-        public int username { get; set; }
+        public string username { get; set; }
+
+        [ForeignKey("userChallengeId")]
         public ICollection<Day> days { get; set; }
         public Boolean challengeCompleted { get; set; }
         public int challengeId { get; set; }       

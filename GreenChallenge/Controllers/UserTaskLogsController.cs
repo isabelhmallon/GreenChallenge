@@ -19,7 +19,7 @@ namespace GreenChallenge.Controllers
         // GET: api/UserTaskLogs
         public IQueryable<UserTaskLog> GetUserTaskLogs()
         {
-            return db.UserTaskLogs;
+            return db.UserTaskLogs;//.Include("challengeTask");
         }
 
         // GET: api/UserTaskLogs/5

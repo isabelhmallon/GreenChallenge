@@ -8,7 +8,6 @@ namespace GreenChallenge.Models
 {
     public class ChallengeTask
     {
-       //[ForeignKey("challengeTaskId")]
         public int id { get; set; }
         public String name { get; set; }
         public String description { get; set; }       

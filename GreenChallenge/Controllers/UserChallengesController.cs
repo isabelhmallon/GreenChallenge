@@ -19,7 +19,7 @@ namespace GreenChallenge.Controllers
         // GET: api/UserChallenges
         public IQueryable<UserChallenge> GetUserChallenges()
         {
-            return db.UserChallenges;
+            return db.UserChallenges.Include("days").Include("challenge");
         }
 
         // GET: api/UserChallenges/5
