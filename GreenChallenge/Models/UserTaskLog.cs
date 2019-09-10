@@ -11,11 +11,7 @@ namespace GreenChallenge.Models
         public int id { get; set; }
         public string username { get; set; }
         public DateTime dateCompleted { get; set; }
-        public Boolean complete { get; set; }
-        
-        //[ForeignKey("challengeTask")]
-        public int challengeTaskId { get; set; }
-        
-        //public ChallengeTask challengeTask { get; set; }
+        public int dayId { get; set; }        
+        public int challengeTaskId { get; set; }      
     }
 }

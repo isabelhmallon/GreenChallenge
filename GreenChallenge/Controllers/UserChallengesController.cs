@@ -22,11 +22,17 @@ namespace GreenChallenge.Controllers
             return db.UserChallenges.Include("days").Include("challenge");
         }
 
+        // GET: api/UserChallenges?username=[username]
+        public IQueryable<UserChallenge> GetUserChallengeByUser(string username)
+        {
+            return db.UserChallenges.Where(uc => uc.username == username).Include("days").Include("challenge");
+        }
+
         // GET: api/UserChallenges/5
         [ResponseType(typeof(UserChallenge))]
         public IHttpActionResult GetUserChallenge(int id)
         {
-            UserChallenge userChallenge = db.UserChallenges.Find(id);
+            UserChallenge userChallenge = db.UserChallenges.Include(uc => uc.days.Select(d => d.tasksCompleted)).Include(uc => uc.challenge).FirstOrDefault(d => d.id == id);
             if (userChallenge == null)
             {
                 return NotFound();
@@ -34,6 +40,7 @@ namespace GreenChallenge.Controllers
 
             return Ok(userChallenge);
         }
+
 
         // PUT: api/UserChallenges/5
         [ResponseType(typeof(void))]

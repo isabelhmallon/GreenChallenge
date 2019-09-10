@@ -26,7 +26,8 @@ namespace GreenChallenge.Controllers
         [ResponseType(typeof(Day))]
         public IHttpActionResult GetDay(int id)
         {
-            Day day = db.Days.Find(id);
+            Day day = db.Days.Include(d => d.tasksCompleted).FirstOrDefault(d => d.id == id);
+           
             if (day == null)
             {
                 return NotFound();
@@ -49,7 +50,7 @@ namespace GreenChallenge.Controllers
                 return BadRequest();
             }
 
-            day.dayCompleted = DayCompleted(day);
+            //day.dayCompleted = DayCompleted(day);
 
             db.Entry(day).State = EntityState.Modified;
 
@@ -80,7 +81,7 @@ namespace GreenChallenge.Controllers
             {
                 return BadRequest(ModelState);
             }
-            day.dayCompleted = DayCompleted(day);
+            //day.dayCompleted = DayCompleted(day);
             db.Days.Add(day);
             db.SaveChanges();
 
@@ -117,30 +118,30 @@ namespace GreenChallenge.Controllers
             return db.Days.Count(e => e.id == id) > 0;
         }
 
-        private bool DayCompleted(Day day)
-        {
-            UserChallenge userChallenge = db.UserChallenges.Include(uc => uc.challenge.tasks)
-                   .FirstOrDefault(uc => uc.id == day.userChallengeId);
+        //private bool DayCompleted(Day day)
+        //{
+        //    UserChallenge userChallenge = db.UserChallenges.Include(uc => uc.challenge.tasks)
+        //           .FirstOrDefault(uc => uc.id == day.userChallengeId);
 
-            Challenge challenge = userChallenge.challenge;
+        //    Challenge challenge = userChallenge.challenge;
 
-            List<ChallengeTask> tasks = challenge.tasks.ToList();
+        //    List<ChallengeTask> tasks = challenge.tasks.ToList();
 
-            var completedChallengeTaskIds = new List<int>();
+        //    var completedChallengeTaskIds = new List<int>();
 
-            day.tasksCompleted.ToList().ForEach(task => completedChallengeTaskIds.Add(task.challengeTaskId));
+        //    day.tasksCompleted.ToList().ForEach(task => completedChallengeTaskIds.Add(task.challengeTaskId));
 
-            var dayCompleted = true;
-            tasks.ForEach(task =>
-            {
-                if (!completedChallengeTaskIds.Contains(task.id))
-                {
-                    dayCompleted = false;
-                }
-            });
+        //    var dayCompleted = true;
+        //    tasks.ForEach(task =>
+        //    {
+        //        if (!completedChallengeTaskIds.Contains(task.id))
+        //        {
+        //            dayCompleted = false;
+        //        }
+        //    });
 
 
-            return dayCompleted;
-        }
+        //    return dayCompleted;
+        //}
     }
 }

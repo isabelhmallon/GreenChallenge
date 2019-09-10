@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -17,6 +18,10 @@ namespace GreenChallenge.Models
     
         public GreenChallengeContext() : base("name=GreenChallengeContext")
         {
+        }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
         }
 
         public System.Data.Entity.DbSet<GreenChallenge.Models.ChallengeTask> ChallengeTasks { get; set; }

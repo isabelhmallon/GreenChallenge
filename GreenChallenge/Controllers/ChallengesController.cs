@@ -26,14 +26,19 @@ namespace GreenChallenge.Controllers
         [ResponseType(typeof(Challenge))]
         public IHttpActionResult GetChallenge(int id)
         {
-            Challenge challenge = db.Challenges.Find(id);
+            Challenge challenge = db.Challenges.Include("tasks").FirstOrDefault(c => c.id == id) ;
             if (challenge == null)
             {
                 return NotFound();
             }
 
             return Ok(challenge);
+
+
         }
+
+       
+      
 
         // PUT: api/Challenges/5
         [ResponseType(typeof(void))]
