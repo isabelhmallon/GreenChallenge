@@ -8,7 +8,6 @@ namespace GreenChallenge.Models
 {
     public class Day
     {
-        
         public int id { get; set; }
         public int dayNumber { get; set; }        
         public int userChallengeId { get; set; }

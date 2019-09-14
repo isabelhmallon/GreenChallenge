@@ -16,6 +16,7 @@ namespace GreenChallenge.Controllers
     {
         private GreenChallengeContext db = new GreenChallengeContext();
 
+        [Authorize]
         // GET: api/ChallengeTasks
         public IQueryable<ChallengeTask> GetChallengeTasks()
         {

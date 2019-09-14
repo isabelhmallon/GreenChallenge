@@ -14,8 +14,10 @@ namespace GreenChallenge.Controllers
 {
     public class ChallengesController : ApiController
     {
+        
         private GreenChallengeContext db = new GreenChallengeContext();
 
+        [Authorize]
         // GET: api/Challenges
         public IQueryable<Challenge> GetChallenges()
         {
