@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html ng-app="greenApp">
+
+<head>
+    <meta charset="utf-8" />
+    <title>GreenChallenge</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.js"></script>
+
+    <!--Font Stylesheet -->
+    <link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet">
+
+    <!--CSS Stylesheet-->
+    <link rel="stylesheet" type="text/css" href="MainStyleSheet.css">
+</head>
+
+<body font-family="Raleway" ng-controller="mainController" class="ng-cloak">
+
+    <!--Login Page-->
+    <div ng-show="loginPage" ng-controller="authenticationController">
+
+        <div class="title"><br /><br />GreenChallenge</div>
+        <div class="tagLine"><br /><br />Challenging you to go greener.</div>
+
+        <div class="loginbox">
+            <form>
+                <input type="text" name="username" placeholder="Email" ng-model="username">
+                <input type="password" name="password" placeholder="Password" ng-model="password">
+                <input type="submit" name="" value="Log In" ng-click="login()">
+                <center><a ng-click="beginSignUp()">Don't have an account?<br />Register Here</a></center>
+                <center><label class="error" ng-if="loginStatus == 400"> <br />Incorrect User Details</label></center>
+            </form>
+        </div>
+    </div>
+
+    <!--User Registration Page--->
+    <div ng-show="register" class="loggedInViewBox" ng-controller="signupController">
+        <form name="signUpInfo" novalidate>
+            <div>
+                <center>
+                    <h1 class="paneltitle"> Create Your Account</h1>
+                </center>
+                <center>
+                    <p>All fields are required</p>
+                </center>
+                <hr>
+                <table class="entryforminputs">
+                    <tr>
+                        <td width="50%" align="center">
+                            Email Address
+                        </td>
+                        <td width="50%" align="center">
+                            <input type="email" name="newEmail" ng-model="newEmail" placeholder="Email" required />
+                            <div ng-show="signUpInfo.newEmail.$touched">
+                                <span ng-show="signUpInfo.newEmail.$error.required">Required!</span>
+                                <span ng-show="signUpInfo.newEmail.$error.email">Invalid!</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="center">
+                            Password <br> (requires an uppercase, lowercase and a number)
+                        </td>
+                        <td width="50%" align="center">
+                            <input name="password" type="password" placeholder="Password" ng-model="newPassword"
+                                required />
+                            <div ng-show="signUpInfo.password.$touched">
+                                <span class="inputRequired"
+                                    ng-show="signUpInfo.password.$error.required">Required!</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="center">
+                            Confirm Password
+                        </td>
+                        <td width="50%" align="center">
+                            <input name="conPassword" type="password" ng-model="conPassword"
+                                placeholder="Confirm Password" required />
+                            <div ng-show="signUpInfo.conPassword.$touched">
+                                <span class="inputRequired"
+                                    ng-show="signUpInfo.conPassword.$error.required">Required!</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <!--Error Messages-->
+                <div data-ng-hide="message == ''">
+                    {{message}}
+                </div>
+                <center>
+                    <button class="button" ng-click="cancelSignUp()">Cancel</button>
+                    <button ng-click="signUp()" type="submit" class="button"
+                        ng-disabled="signUpInfo.$invalid">Submit</button>
+                </center>
+            </div>
+        </form>
+    </div>
+
+    <!--Direct user to login after sign up-->
+    <div ng-show="sucessfulRegistration" class="loggedInViewBox">
+        <center>
+            <p class="paneltitle"> User Registation has been sucessful. Please log in.</p>
+        </center>
+        <button class="button" ng-click="goToLogin()">Go to login</button>
+
+    </div>
+
+    <!--Tasks calender/Home page-->
+    <div ng-show="homepg" class="loggedInViewBox">
+        <center>
+            <h1 class="paneltitle"> Welcome</h1>
+        </center>
+        <center>
+            <p>Days viewed: {{daysOpened.length}}</p>
+        </center>
+        <center>
+            <p>Challenge: {{userChallengeInfo.challenge.name}}</p>
+        </center>
+        <hr>
+        <table class="daysTable">
+            <tr>
+                <td><button class="button" ng-click="goToThisDay(1)">Day 1</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(2)" ng-click="goToThisDay(2)">Day 2</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(3)" ng-click="goToThisDay(3)">Day 3</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(4)" ng-click="goToThisDay(4)">Day 4</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(5)" ng-click="goToThisDay(5)">Day 5</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(6)" ng-click="goToThisDay(6)">Day 6</button></td>
+            </tr>
+            <tr>
+                <td><button class="button" ng-disabled="!dayEnabled(7)" g-click="goToThisDay(7)">Day 7</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(8)" ng-click="goToThisDay(8)">Day 8</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(9)" ng-click="goToThisDay(9)">Day 9</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(10)" ng-click="goToThisDay(10)">Day 10</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(11)" ng-click="goToThisDay(11)">Day 11</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(12)" ng-click="goToThisDay(12)">Day 12</button></td>
+            </tr>
+            <tr>
+                <td><button class="button" ng-disabled="!dayEnabled(13)" ng-click="goToThisDay(13)">Day 13</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(14)" ng-click="goToThisDay(14)">Day 14</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(15)" ng-click="goToThisDay(15)">Day 15</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(16)" ng-click="goToThisDay(16)">Day 16</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(17)" ng-click="goToThisDay(17)">Day 17</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(18)" ng-click="goToThisDay(18)">Day 18</button></td>
+            </tr>
+            <tr>
+                <td><button class="button" ng-disabled="!dayEnabled(19)" ng-click="goToThisDay(19)">Day 19</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(20)" ng-click="goToThisDay(20)">Day 20</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(21)" ng-click="goToThisDay(21)">Day 21</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(22)" ng-click="goToThisDay(22)">Day 22</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(23)" ng-click="goToThisDay(23)">Day 23</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(24)" ng-click="goToThisDay(24)">Day 24</button></td>
+            </tr>
+            <tr>
+                <td><button class="button" ng-disabled="!dayEnabled(25)" ng-click="goToThisDay(25)">Day 25</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(26)" ng-click="goToThisDay(26)">Day 26</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(27)" ng-click="goToThisDay(27)">Day 27</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(28)" ng-click="goToThisDay(28)">Day 28</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(29)" ng-click="goToThisDay(29)">Day 29</button></td>
+                <td><button class="button" ng-disabled="!dayEnabled(30)" ng-click="goToThisDay(30)">Day 30</button></td>
+            </tr>
+        </table>
+        <button class="button" ng-click="goToAccountMenu()">Account</button>
+
+    </div>
+
+    <!--Days Tasks Page-->
+    <div ng-show="dayChallenge" class="loggedInViewBox">
+        <center>
+            <h1 class="paneltitle"> Day: {{dayNo}}</h1>
+        </center>
+        <center>
+            <p>Click the challenge to mark it as complete. </p>
+        </center>
+        <hr>
+        <table class="daysTable">
+            <tr ng-repeat="dayTask in dayTasks.tasks">
+                <td>
+                    <button ng-disabled="taskCompleted(dayTask.id)" class="taskButton"
+                        ng-click="completeTask(dayTask, dayNo)">
+                        <img class="tick" ng-if="taskCompleted(dayTask.id)" src="app/images/tick.png" alt="Completed">
+                        </p>{{dayTask.name}}:<br>
+                        {{dayTask.description}}
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <button class="button" ng-click="goToHome()">Back</button>
+    </div>
+
+    <!--Pick Challenge Page-->
+    <div ng-show="pickChallenge" class="loggedInViewBox">
+        <center>
+            <h1 class="paneltitle"> Pick Challenge</h1>
+        </center>
+        <hr>
+        <table class="daysTable">
+            <tr ng-repeat="challenge in challenges">
+                <td>
+                    <button class="taskButton" ng-click="pickThisChallenge(challenge)">{{challenge.name}}:
+                        {{challenge.description}}
+                    </button>
+                </td>
+            </tr>
+        </table>
+        <center><label class="error" ng-if="pickChallengeStatus == 400"> <br />Sorry, there has been a server
+                error.</label></center>
+    </div>
+
+    <!--Menu/Account Page-->
+    <div ng-show="accountMenu" class="loggedInViewBox" ng-controller="indexController">
+        <center>
+            <h1 class="paneltitle"> Account:</h1>
+        </center>
+        <center>
+            <h1 class="paneltitle"> Currently signed in as {{currentUser}} </h1>
+        </center>
+        <hr>
+        <table class="daysTable">
+            <tr>
+                <td><button class="menuButton" ng-click="goToChangePwd()">Change Password</button></td>
+            </tr>
+            <tr>
+                <td><button class="menuButton" ng-click="goToStats()">Statistics</button></td>
+            </tr>
+            <tr>
+                <td><button class="menuButton" ng-click="logOut()">Logout</button></td>
+            </tr>
+            <tr>
+                <td><button class="menuButton" ng-click="goToPickChallenge()">Pick Challenge</button></td>
+            </tr>
+            <tr>
+                <td><button class="menuButton" ng-click="goToHome()">Back</button></td>
+            </tr>
+        </table>
+    </div>
+
+    <!--Change Password - validations active-->
+    <div ng-show="changePass" class="loggedInViewBox">
+        <form name="chgPwd" novalidate>
+            <div>
+                <center>
+                    <h1 class="paneltitle"> Change your password</h1>
+                </center>
+                <center>
+                    <p>Required fields are marked with *</p>
+                </center>
+                <hr>
+                <center>
+                    <div class="material-icons">
+                        <div class="paneltitle"></div>
+                    </div>
+                </center>
+                <br />
+                <table class="entryforminputs">
+                    <tr>
+                        <td width="50%" align="center">
+                            Old Password*
+                        </td>
+                        <td width="50%" align="left">
+                            <input align="left" name="password" type="password" placeholder="Old Password"
+                                ng-model="oldPassword" required />
+                        </td>
+                        <td>
+                            <div ng-show="chgPwd.password.$touched">
+                                <span ng-show="chgPwd.password.$error.required">Required!</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="center">
+                            New Password*
+                        </td>
+                        <td width="50%" align="left">
+                            <input align="left" name="newPass" type="password" ng-model="newPassword"
+                                placeholder="New Password" required />
+                        </td>
+                        <td>
+                            <div ng-show="chgPwd.newPass.$touched">
+                                <span ng-show="chgPwd.newPass.$error.required">Required!</span>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td width="50%" align="center">
+                            Confirm Password*
+                        </td>
+
+                        <td width="50%" align="left">
+                            <input align="left" name="conNewPass" ng-model="conNewPassword" type="password"
+                                placeholder="Confirm Password" required />
+                        </td>
+                        <td>
+                            <div ng-show="chgPwd.conNewPass.$touched">
+                                <span ng-show="chgPwd.conNewPass.$error.required">Required!</span>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <br />
+                <div data-ng-hide="message == ''" class="alert alert-danger">
+                    {{message}}
+                </div>
+                <center>
+                    <button class="button" ng-click="goToAccountMenu()">Cancel</button>
+                    <button ng-click="changePwd()" type="submit" class="button"
+                        ng-disabled="chgPwd.$invalid">Submit</button>
+                </center>
+            </div>
+        </form>
+    </div>
+
+    <!--Statistics Page-->
+    <div ng-show="graph" class="loggedInViewBox">
+        <center>
+            <h1 class="paneltitle"> Statistics For This Challenge</h1>
+        </center>
+        <hr>
+        <div class="chart" style="height:{{height}}px;">
+ 
+            <!-- Labels -->
+            <div class="y" style="width:{{height}}px;">{{yAxis}}</div>
+            <div class="x">{{xAxis}}</div>
+            
+            <!-- Data -->
+            <div ng-repeat="bar in data" class="bar" style="height:{{bar.value / max * height}}px; width:{{width / data.length - 5}}px; 
+                left:{{$index / data.length * width}}px;">
+                <span class="barLabels">Day {{bar.label}}: Challenges Completed {{bar.value}}</span></div>
+        </div>
+        <button class="button" ng-click="goToHome()">Home</button>
+
+    </div>
+
+    <!--Internal Scripts-->
+    <script src="app/greenApp.js"></script>
+    <script src="app/main/mainModule.js"></script>
+
+    <!--Load services-->
+    <script src="app/services/authInterceptorService.js?v=2"></script>
+
+    <!-- Load controllers -->
+    <script src="app/main/mainController.js"></script>
+    <script src="app/authentication/indexController.js"></script>
+    <script src="app/authentication/authenticationController.js"></script>
+    <script src="app/authentication/signupController.js"></script>
+
+</body>
+
+</html>

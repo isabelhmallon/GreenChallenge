@@ -26,7 +26,6 @@ namespace GreenChallenge.Controllers
     {
         private const string LocalLoginProvider = "Local";
         private ApplicationUserManager _userManager;
-
         public AccountController()
         {
         }

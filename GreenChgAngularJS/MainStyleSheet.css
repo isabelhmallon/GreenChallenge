@@ -1,0 +1,254 @@
+﻿body, html {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.loginbox {
+    border-radius: 25px;
+    background: #444;
+    color: #fff;
+    top: 60%;
+    left: 50%;
+    margin-top: 15px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: auto;
+    padding-left: 10px;
+    padding-right: 10px;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    padding: 30px 30px;
+    opacity: 0.96;
+    font-family: 'Raleway', sans-serif;
+}
+
+    .loginbox p {
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+    }
+
+    .loginbox input {
+        width: 100%;
+        margin-bottom: 20px;
+    }
+        .loginbox input[type="text"], input[type="email"], input[type="password"] {
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            outline: none;
+            height: 40px;
+            color: #fff;
+            font-size: 16px;            
+        }
+
+        .loginbox input[type="submit"] {
+            border: none;
+            outline: none;
+            height: 40px;
+            background: rgb(60, 204, 91);
+            color: #fff;
+            font-size: 18px;
+            border-radius: 20px;
+        }
+
+            .loginbox input[type="submit"]:hover {
+                cursor: pointer;
+                background:rgb(16, 173, 87);
+                color: #fff;
+            }
+
+    .loginbox a {
+        text-decoration: none;
+        font-size: 12px;
+        line-height: 20px;
+        color: darkgrey;
+    }
+        .loginbox a:hover {
+            cursor: pointer;
+            color: #fff;
+        }
+
+.error {
+    font-family: 'Raleway', sans-serif;
+    color: red;
+            text-align: center;
+        font-weight: bold;
+        }
+
+.title {
+    text-align: center;
+    height: 50px;
+    padding: 10px 30px;
+    font-size: 4em;
+    line-height: 50px;
+    letter-spacing: 5px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 900;
+    color: #444;
+}
+
+.tagLine {
+    text-align: center;
+    height: 50px; 
+    padding: 5px 30px;
+    font-size: 1.8em; 
+    line-height: 50px; 
+    letter-spacing: 2px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 700;
+    color: rgb(60, 204, 91);
+}
+
+.loggedInViewBox {
+    border-radius: 25px;
+    background: #444;
+    color: #fff;
+    margin: 2% 20%;
+    padding: 30px 30px;
+    opacity: 0.96;   
+    font-family: 'Raleway', sans-serif;
+}
+
+
+.button {
+    border: none;
+    margin-top: 5px;
+    outline: none;
+    height: 40px;
+    background: rgb(60, 204, 91);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
+    .button:hover {
+        cursor: pointer;
+        background: rgb(16, 173, 87);
+        color: #fff;
+    }
+
+    .button:disabled{
+        background: rgb(86, 97, 88);
+        
+    }
+
+.paneltitle {
+    color:  rgb(60, 204, 91);
+}
+
+.daysTable {
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+    font-size: 20px;
+}
+
+tr, td{
+    padding: 10px 10px;
+}
+
+.chart {
+    border-left: 1px solid white;
+    border-bottom: 1px solid white;
+    margin: 60px auto;
+    position: relative;
+    width: 90%;
+  }
+  
+  .y {
+    position: absolute;
+    transform: rotate(-90deg);
+    transform-origin: bottom left;
+    bottom: 0;
+    padding: 5px;
+    text-align: center;
+  }
+  
+  .x {
+    position: absolute;
+    top: 100%;
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+  }
+
+  .bar {
+    background: rgb(60, 204, 91);
+    position: absolute;
+    bottom: 0;
+  }
+
+  .barLabels {
+    position:absolute;
+    bottom:-10px;
+    left:50%;
+    transform:rotate(-90deg) translateY(-50%);
+    transform-origin: left top;
+    font-weight:bold;
+    white-space:nowrap;
+  }
+
+
+.taskButton {
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    margin-top: 5px;
+    outline: none;
+    height: 80px;
+    background: rgb(60, 204, 91);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.taskButton:hover {
+    cursor: pointer;
+    background: rgb(16, 173, 87);
+    color: #fff;
+}
+
+.taskButton:disabled{
+    background: rgb(60, 204, 91);
+}
+
+.taskButton p {
+    margin: 0;
+    padding: 0;   
+}
+
+.menuButton {
+    font-family: 'Raleway', sans-serif;
+    border: none;
+    margin-top: 5px;
+    outline: none;
+    height: 40px;
+    background: rgb(60, 204, 91);
+    color: #fff;
+    font-size: 14px;
+    border-radius: 10px;
+    width: 90%;
+}
+
+.menuButton:hover {
+    cursor: pointer;
+    background: rgb(16, 173, 87);
+    color: #fff;
+}
+
+.menuButton:disabled{
+    background: rgb(60, 204, 91);  
+}
+
+.menuButton p {
+    margin: 0;
+    padding: 0;   
+}
+
+.tick {
+    height: 50px;
+    float: right;
+   }
+
